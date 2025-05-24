@@ -14,6 +14,7 @@ export default function Navbar() {
           <span className="font-bold text-blue-900 text-xl">Globle One Campus</span>
         </div>
 
+
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-6 text-blue-800 font-medium">
           <Link to="/" className="hover:text-blue-600">Home</Link>
