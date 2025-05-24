@@ -57,7 +57,7 @@ export default function Home() {
         <div className="relative z-10 h-full flex flex-col items-center justify-center text-white text-center px-4">
           <div className="max-w-2xl p-6 bg-white/10 backdrop-blur-xl rounded-3xl shadow-lg animate-fade-up">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Welcome to Globle One Company
+              Welcome to Globle One Campus
             </h1>
             <p className="text-lg md:text-xl mb-6">
               Japan's trusted educational & visa consulting partner
