@@ -1,17 +1,14 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react-swc';
 
-// https://vite.dev/config/
+// https://vitejs.dev/config/
 export default defineConfig({
+  plugins: [react()],
   server: {
-    proxy: {
-      '/api': {
-        target: 'https://restcountries.com/v3.1',
-        secure: false,
-      },
-    },
+    port: 5173, // optional: customize if needed
+    open: true, // open browser on dev start
   },
-  plugins: [
-    react(), // This is correct for Vite + React with SWC
-  ],
-})
+  build: {
+    outDir: 'dist', // default output folder
+  },
+});
