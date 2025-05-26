@@ -11,7 +11,7 @@ export default function Navbar() {
         {/* Logo */}
         <div className="flex items-center space-x-2">
           <img src={logo} alt="logo" className="w-10 h-10" />
-          <span className="font-bold text-blue-900 text-xl">Globle One Campus</span>
+          <span className="font-bold text-blue-900 text-xl">Globle One Future Campus</span>
         </div>
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-6 text-blue-800 font-medium">

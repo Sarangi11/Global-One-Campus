@@ -8,7 +8,7 @@ export default function Footer() {
         {/* Left - Logo */}
         <div className="flex-shrink-0">
           <img src={logo} alt="Logo" className="w-32 mb-4" />
-          <p className="text-sm">&copy; {new Date().getFullYear()} Globle One Company</p>
+          <p className="text-sm">&copy; {new Date().getFullYear()} Globle One Future Company</p>
         </div>
 
         {/* Right - Contact Info */}

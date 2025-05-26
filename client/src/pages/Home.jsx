@@ -6,47 +6,55 @@ import hero3 from "../assets/visa3.jpeg";
 
 export default function Home() {
   const [currentImage, setCurrentImage] = useState(0);
+
+  // ✅ Now use them here
   const images = [hero1, hero2, hero3];
   const navigate = useNavigate();
 
   const programs = [
     {
       title: "Student Visa Guidance",
-      desc: "Step-by-step help for applying and securing student visas to Japan.",
+      desc: "Help with applying and securing your Japan student visa.",
+      image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b",
       link: "/services#student-visa",
     },
     {
       title: "University Admissions",
-      desc: "Get admission support into Japan's top universities and programs.",
+      desc: "Support for admission into top Japanese universities.",
+      image: "https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8amFwYW58ZW58MHx8MHx8fDA%3D",
       link: "/services#admissions",
     },
     {
       title: "Language & Culture Programs",
-      desc: "Join immersive Japanese language and cultural exchange programs.",
+      desc: "Join immersive Japanese language & cultural courses.",
+      image: "https://plus.unsplash.com/premium_photo-1690749740487-01bbb8e51e71?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8amFwYW58ZW58MHx8MHx8fDA%3D",
       link: "/services#language",
     },
     {
       title: "Work Visa Consultation",
-      desc: "Switch from study to work visa or apply for direct career visa.",
+      desc: "Switch from study to work visa or apply for job visa.",
+      image: "https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGphcGFufGVufDB8fDB8fHww",
       link: "/services#work-visa",
     },
     {
       title: "Scholarship Assistance",
-      desc: "Explore and apply for scholarships offered by Japanese institutions.",
+      desc: "Find and apply for scholarships in Japanese institutions.",
+      image: "https://images.unsplash.com/photo-1522547902298-51566e4fb383?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGphcGFufGVufDB8fDB8fHww",
       link: "/services#scholarship",
     },
   ];
 
+  // Hero background slider
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % images.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [images.length]);
 
   return (
     <div>
-      {/* Hero */}
+      {/* Hero Section */}
       <section className="h-[70vh] relative overflow-hidden">
         <img
           src={images[currentImage]}
@@ -57,8 +65,9 @@ export default function Home() {
         <div className="relative z-10 h-full flex flex-col items-center justify-center text-white text-center px-4">
           <div className="max-w-2xl p-6 bg-white/10 backdrop-blur-xl rounded-3xl shadow-lg animate-fade-up">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Welcome to Globle One Campus</h1>
-            <p className="text-lg md:text-xl mb-6">
+              Welcome to Globle One Company
+            </h1>
+            <p className="text-lg md:text-xl mb-6 text-white">
               Japan's trusted educational & visa consulting partner
             </p>
             <Link
@@ -80,7 +89,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Program Boxes */}
+      {/* Programs Section */}
       <section className="py-16 bg-blue-50">
         <h2 className="text-3xl font-bold text-center text-blue-800 mb-10">
           Our Programs
@@ -90,17 +99,25 @@ export default function Home() {
             <div
               key={i}
               onClick={() => navigate(item.link)}
-              className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition group cursor-pointer relative"
+              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition transform group cursor-pointer"
             >
-              <h3 className="text-xl font-semibold text-blue-800 group-hover:text-blue-900 mb-2">
-                {item.title}
-              </h3>
-              <p className="text-sm text-gray-600 mb-4 group-hover:opacity-100 opacity-70 transition-opacity duration-300">
-                {item.desc}
-              </p>
-              <button className="mt-2 text-sm text-blue-700 group-hover:underline">
-                View More →
-              </button>
+              {/* Image with overlay */}
+              <div className="relative h-40 overflow-hidden">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
+                  <span className="text-white font-semibold">View More</span>
+                </div>
+              </div>
+
+              {/* Description */}
+              <div className="p-4 text-blue-900">
+                <h3 className="text-lg font-bold">{item.title}</h3>
+                <p className="text-sm text-gray-700 mt-2">{item.desc}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -109,7 +126,7 @@ export default function Home() {
   );
 }
 
-// Counter Component
+// Counter component
 function Counter({ value, label, suffix = "+" }) {
   const [count, setCount] = useState(0);
 
