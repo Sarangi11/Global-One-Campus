@@ -1,15 +1,21 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import hero1 from "../assets/visa1.jpeg";
-import hero2 from "../assets/visa2.jpeg";
-import hero3 from "../assets/visa3.jpeg";
+
+const heroVideos = [
+  "https://videos.pexels.com/video-files/31424697/13404655_2560_1440_30fps.mp4",
+  "https://videos.pexels.com/video-files/4236898/4236898-uhd_2560_1440_30fps.mp4",
+  "https://videos.pexels.com/video-files/20748014/20748014-hd_1920_1080_24fps.mp4",
+];
 
 export default function Home() {
-  const [currentImage, setCurrentImage] = useState(0);
-
-  // ✅ Now use them here
-  const images = [hero1, hero2, hero3];
   const navigate = useNavigate();
+
+  const [videoIndex, setVideoIndex] = useState(0);
+
+  const handleVideoEnd = () => {
+    setVideoIndex((prev) => (prev + 1) % heroVideos.length);
+  };
+
 
   const programs = [
     {
@@ -21,64 +27,65 @@ export default function Home() {
     {
       title: "University Admissions",
       desc: "Support for admission into top Japanese universities.",
-      image: "https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8amFwYW58ZW58MHx8MHx8fDA%3D",
+      image: "https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?w=600",
       link: "/services#admissions",
     },
     {
       title: "Language & Culture Programs",
       desc: "Join immersive Japanese language & cultural courses.",
-      image: "https://plus.unsplash.com/premium_photo-1690749740487-01bbb8e51e71?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8amFwYW58ZW58MHx8MHx8fDA%3D",
+      image: "https://plus.unsplash.com/premium_photo-1690749740487-01bbb8e51e71?w=600",
       link: "/services#language",
     },
     {
       title: "Work Visa Consultation",
       desc: "Switch from study to work visa or apply for job visa.",
-      image: "https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGphcGFufGVufDB8fDB8fHww",
+      image: "https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?w=600",
       link: "/services#work-visa",
     },
     {
       title: "Scholarship Assistance",
       desc: "Find and apply for scholarships in Japanese institutions.",
-      image: "https://images.unsplash.com/photo-1522547902298-51566e4fb383?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGphcGFufGVufDB8fDB8fHww",
+      image: "https://images.unsplash.com/photo-1522547902298-51566e4fb383?w=600",
       link: "/services#scholarship",
     },
   ];
 
-  // Hero background slider
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % images.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [images.length]);
-
   return (
     <div>
-      {/* Hero Section */}
-      <section className="h-[70vh] relative overflow-hidden">
-        <img
-          src={images[currentImage]}
-          alt="Hero"
-          className="absolute inset-0 w-full h-full object-cover brightness-90 transition-all duration-1000"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/70 via-black/40 to-blue-800/60 backdrop-blur-sm"></div>
-        <div className="relative z-10 h-full flex flex-col items-center justify-center text-white text-center px-4">
-          <div className="max-w-2xl p-6 bg-white/10 backdrop-blur-xl rounded-3xl shadow-lg animate-fade-up">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Welcome to Globle One Company
-            </h1>
-            <p className="text-lg md:text-xl mb-6 text-white">
-              Japan's trusted educational & visa consulting partner
-            </p>
-            <Link
-              to="/services"
-              className="bg-white text-blue-900 font-semibold px-6 py-2 rounded-full hover:bg-blue-100 transition"
-            >
-              Explore Services
-            </Link>
-          </div>
+      {/* Hero Section with Video */}
+       <section className="h-[70vh] relative overflow-hidden">
+      {/* ✅ Video Background */}
+      <video
+        key={videoIndex}
+        src={heroVideos[videoIndex]}
+        autoPlay
+        muted
+        playsInline
+        onEnded={handleVideoEnd}
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+
+      {/* ✅ Soft overlay (no blur) */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-white/10 to-blue-100/30"></div>
+
+      {/* ✅ Hero Text & CTA */}
+      <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-4">
+        <div className="max-w-2xl p-6 bg-white/50 backdrop-blur-sm rounded-3xl shadow-lg">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-blue-900">
+            Welcome to Globle One Future Campus
+          </h1>
+          <p className="text-lg md:text-xl mb-6 text-gray-900">
+            Japan's trusted educational & visa consulting partner
+          </p>
+          <Link
+            to="/services"
+            className="bg-white text-blue-900 font-semibold px-6 py-2 rounded-full hover:bg-blue-100 transition"
+          >
+            Explore Services
+          </Link>
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* Counter Section */}
       <section className="bg-white py-12">
@@ -126,7 +133,7 @@ export default function Home() {
   );
 }
 
-// Counter component
+// Counter Component
 function Counter({ value, label, suffix = "+" }) {
   const [count, setCount] = useState(0);
 
