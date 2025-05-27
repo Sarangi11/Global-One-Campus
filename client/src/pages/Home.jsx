@@ -3,8 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 
 const heroVideos = [
   "https://videos.pexels.com/video-files/31424697/13404655_2560_1440_30fps.mp4",
-  "https://videos.pexels.com/video-files/4236898/4236898-uhd_2560_1440_30fps.mp4",
   "https://videos.pexels.com/video-files/20748014/20748014-hd_1920_1080_24fps.mp4",
+  "https://videos.pexels.com/video-files/4236898/4236898-uhd_2560_1440_30fps.mp4",
+  
 ];
 
 export default function Home() {

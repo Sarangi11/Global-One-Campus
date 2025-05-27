@@ -33,7 +33,7 @@ export default function About() {
             showContent ? "scale-100 opacity-100" : "scale-90 opacity-0"
           }`}
         >
-          <div className="rounded-xl border-2 border-blue-300 bg-blue-50 shadow-lg overflow-hidden">
+          <div className="rounded-xl border-2 border-blue-1000 bg-blue-50 shadow-lg overflow-hidden">
             <video
               autoPlay
               muted
